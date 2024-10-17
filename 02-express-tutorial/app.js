@@ -1,18 +1,28 @@
 const express = require('express')
-const path = require('path')
-
 const app = express()
+const morgan = require('morgan')
+const logger = require('./logger')
+const authorize = require('./authorize')
 
-app.use(express.static('./public'))
+
+//app.use([logger, authorize])
+//app.use(express.static('./public'))
+app.use(morgan('tiny'))
 
 app.get('/', (req, res) => {
-res.sendFile(path.resolve(__dirname, './navbar-app/index.html'))
+  res.send('Home')
 })
-
-app.all('*', (req, res) => {
-  res.status(404).send('resource not found')
+app.get('/about', (req, res) => {
+  res.send('About')
+})
+app.get('/api/products', (req, res) => {
+  res.send('Products')
+})
+app.get('/api/items', (req, res) => {
+  console.log(req.user)
+  res.send('Items')
 })
 
 app.listen(5000, () => {
-  console.log('server is listening on port 5000...')
+  console.log('Server is listening on port 5000...')  
 })

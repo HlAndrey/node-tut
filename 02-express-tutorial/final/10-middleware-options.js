@@ -3,10 +3,10 @@ const app = express()
 const morgan = require('morgan')
 const logger = require('./logger')
 const authorize = require('./authorize')
-//  req => middleware => res
 
-// app.use([logger, authorize])
-// app.use(express.static('./public'))
+
+//app.use([logger, authorize])
+//app.use(express.static('./public'))
 app.use(morgan('tiny'))
 
 app.get('/', (req, res) => {
@@ -24,5 +24,6 @@ app.get('/api/items', (req, res) => {
 })
 
 app.listen(5000, () => {
-  console.log('Server is listening on port 5000....')
+  console.log('Server is listening on port 5000...')  
 })
+
