@@ -5,5 +5,6 @@ const {getAllTasks, createTask, getTask, updateTask, deleteTask} = require('../c
 
 router.route('/').get(getAllTasks).post(createTask)
 router.route('/:id').get(getTask).patch(updateTask).delete(deleteTask)
+//.put(editTask)
 
 module.exports = router
