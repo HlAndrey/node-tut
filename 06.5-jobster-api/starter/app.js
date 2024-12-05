@@ -5,7 +5,7 @@ const path = require('path')
 // extra security packages
 const helmet = require('helmet');
 const xss = require('xss-clean');
- 
+
 const express = require('express');
 const app = express();
 
@@ -21,6 +21,8 @@ app.get('*', (req, res) => {
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
+
+app.set('trust proxy', 1)
 
 app.use(express.static(path.resolve(__dirname, './client/build')))
 app.use(express.json());
